@@ -1,0 +1,96 @@
+ Atmosphere The atmosphere is the layer of gases surrounding Earth, extending about 10,000 km from the
+ surface. It is primarily composed of nitrogen (78%), oxygen (21%), and trace gases like carbon dioxide,
+ argon, and water vapor. The atmosphere is divided into layers: troposphere (where weather occurs),
+ stratosphere (ozone layer), mesosphere, thermosphere, and exosphere. It regulates Earth's temperature,
+ protects life from harmful solar radiation, and transports heat and moisture around the planet, driving
+ weather systems and climate patterns.
+ Barometer A barometer measures atmospheric pressure, which is the weight of air above a specific point.
+ Pressure changes are crucial in predicting weather. Falling pressure often indicates approaching storms,
+ while rising pressure suggests fair weather. Mercury barometers use liquid mercury displacement, whereas
+ aneroid barometers rely on a flexible metal chamber. Modern digital barometers integrate with
+ smartphones and weather stations for real-time data.
+ Climate Climate refers to long-term patterns of temperature, precipitation, wind, and humidity in a region,
+ typically averaged over 30 years. Climates vary widely, from tropical rainforests and deserts to polar
+ tundras. Factors influencing climate include latitude, altitude, ocean currents, and proximity to mountains.
+ Climate classification systems, like Köppen-Geiger, divide Earth into zones such as tropical, arid, temperate,
+ and polar, providing a framework for agriculture, urban planning, and disaster preparedness.
+ Dew Point The dew point is the temperature at which air becomes saturated and water vapor condenses
+ into dew, frost, or fog. It is a measure of atmospheric moisture and directly affects comfort levels and
+ weather prediction. High dew points indicate humid conditions, while low dew points correspond to dry air.
+ Meteorologists use dew point to forecast fog, frost, and thunderstorms.
+ Evaporation Evaporation is the process of water changing from liquid to gas, primarily driven by solar
+ radiation. It is a key component of the water cycle, contributing to cloud formation and precipitation.
+ Factors affecting evaporation include temperature, wind speed, humidity, and surface area of water bodies.
+ Evaporation also influences weather patterns, droughts, and the distribution of moisture across regions.
+ Front A front is a boundary between two air masses with different temperatures and humidity levels. Fronts
+ can be classified as cold, warm, stationary, or occluded. Cold fronts bring thunderstorms, heavy rain, and
+ cooler temperatures, while warm fronts typically produce gradual precipitation. Stationary fronts cause
+ prolonged rain, and occluded fronts combine features of both. Understanding fronts is essential for
+ accurate weather forecasting.
+ Greenhouse Effect The greenhouse effect occurs when greenhouse gases like CO₂, CH₄, and N₂O trap heat
+ in Earth's atmosphere. This natural process maintains Earth's average temperature around 15°C, enabling
+ life. However, human activities such as fossil fuel burning and deforestation have intensified the effect,
+ leading to global warming, sea-level rise, and changes in precipitation patterns.
+ Humidity Humidity is the concentration of water vapor in the air. Relative humidity is the percentage of
+ moisture relative to the maximum the air can hold at a given temperature. High humidity can maketemperatures feel hotter (heat index), increase the likelihood of precipitation, and influence cloud
+ formation. Low humidity causes dryness, which can affect health, agriculture, and wildfire risk.
+ Isobar Isobars are lines on weather maps connecting points of equal atmospheric pressure. They reveal
+ high-pressure systems (anticyclones) and low-pressure systems (cyclones), which dictate wind patterns and
+ storm development. Closely spaced isobars indicate strong winds, while widely spaced isobars suggest calm
+ conditions. Meteorologists use isobars to predict wind speed, storm movement, and weather changes.
+ Jet Stream Jet streams are narrow, fast-flowing air currents in the upper atmosphere, typically 9–16 km
+ above sea level. They influence weather by steering storms and affecting temperature distribution. The
+ polar jet stream and subtropical jet stream impact mid-latitude weather, causing fluctuations like cold snaps
+ and heatwaves. Changes in jet streams are linked to climate anomalies and extreme weather events.
+ Kelvin (Temperature Scale) The Kelvin scale is an absolute temperature scale used in science. Zero Kelvin
+ represents absolute zero, the point where all molecular motion ceases. In meteorology, Kelvin is used for
+ thermodynamic calculations, modeling atmospheric processes, and understanding heat transfer in climate
+ studies.
+ Lightning Lightning is a sudden electrostatic discharge during thunderstorms. It can occur within clouds,
+ between clouds, or between clouds and the ground. Lightning formation involves charge separation within
+ clouds and rapid movement of electrons. It is associated with thunder, heavy rain, hail, and severe storms,
+ and it plays a role in nitrogen fixation in ecosystems.
+ Monsoon Monsoons are seasonal wind patterns that bring significant rainfall, particularly in South and
+ Southeast Asia. They result from the differential heating of land and ocean, causing wind direction reversal.
+ Monsoons impact agriculture, water resources, and regional economies. Failures or delays in monsoon
+ onset can lead to droughts and crop losses.
+ NOAA (National Oceanic and Atmospheric Administration) NOAA is a U.S. agency responsible for monitoring
+ weather, oceans, and climate. It provides weather forecasts, warnings, climate research, and satellite data.
+ NOAA’s services are critical for disaster preparedness, marine navigation, agriculture, and climate policy.
+ Ozone Layer The ozone layer in the stratosphere absorbs most of the Sun’s harmful ultraviolet radiation.
+ Depletion, caused by CFCs and other pollutants, increases UV exposure, leading to skin cancer, cataracts,
+ and ecosystem damage. Monitoring ozone is crucial for environmental protection and public health.
+ Precipitation Precipitation is water released from clouds in forms such as rain, snow, sleet, or hail. It results
+ from condensation of water vapor, cloud formation, and atmospheric dynamics. Precipitation type and
+ intensity depend on temperature, humidity, and air currents. It is essential for freshwater supply,
+ agriculture, and ecosystem sustainability.
+ Quasi-Biennial Oscillation (QBO) The QBO is a regular variation of stratospheric winds in the tropics with a
+ period of approximately 28 months. It affects the distribution of ozone, tropical convection, and global
+ weather patterns. Understanding the QBO helps improve long-term weather and climate predictions
+Rainfall Rainfall measures the amount of water falling from clouds, usually in millimeters. Types include
+convective (from localized heating), orographic (air forced over mountains), and frontal (along fronts).
+Rainfall patterns influence agriculture, water supply, flooding, and ecosystem health.
+Storm Storms are disturbed atmospheric conditions with strong winds, precipitation, and sometimes
+lightning. Types include thunderstorms, cyclones, hurricanes, tornadoes, blizzards, and dust storms. Storm
+monitoring and forecasting are vital for safety, disaster management, and infrastructure planning.
+Temperature Temperature is a measure of thermal energy in the atmosphere. It affects weather patterns,
+energy distribution, evaporation rates, and living conditions. Temperature extremes lead to heatwaves, cold
+waves, and influence climate variability and human health.
+Updraft Updrafts are rising air currents that contribute to cloud formation, thunderstorms, and severe
+weather. They result from heating at Earth's surface, topography, or frontal lifting. Strong updrafts can
+produce hail, tornadoes, and intense storm systems.
+Visibility Visibility is the distance at which an object can be clearly seen. Reduced by fog, heavy rain, snow,
+smoke, or dust, it affects transportation, aviation, and public safety. Meteorologists report visibility as part
+of weather forecasts.
+Wind Wind is air movement from high-pressure to low-pressure areas. It influences temperature, cloud
+movement, and ocean currents. Wind energy is harnessed for power, and wind patterns are critical for
+weather forecasting and aviation.
+Xerothermic Conditions Xerothermic conditions are dry and hot, typical of deserts and arid regions. These
+conditions affect vegetation, water resources, and soil quality, and are key in climate classification and
+drought prediction.
+Yield Impact of Weather Weather impacts agriculture and food production. Extreme events like droughts,
+floods, frost, or heatwaves can reduce crop yields and affect food security. Monitoring weather patterns
+helps farmers plan irrigation, planting, and harvesting.
+Zephyr A zephyr is a gentle, mild wind, often signaling calm and pleasant weather. Zephyrs affect local
+microclimates, air circulation, and can influence cloud formation and dispersal of pollutants.
+ 
