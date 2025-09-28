@@ -7,11 +7,14 @@ import faiss
 from fastapi.middleware.cors import CORSMiddleware
 from google import genai
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ------------------------------
 # Configure Gemini API key
 # ------------------------------
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY", "AIzaSyBOya1n1rqvfsGkJTSawO1C4CQsnsgDC-Q"))
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # ------------------------------
 # FastAPI app and CORS
@@ -38,8 +41,6 @@ def read_all_texts(folder_path):
     return "\n".join(texts)
 
 notes_text = read_all_texts("sample_notes")
-print("First 200 chars of notes:")
-print(notes_text[:200])
 
 # ------------------------------
 # Split text into chunks
@@ -58,7 +59,6 @@ def chunk_text(text):
     return chunks
 
 chunks = chunk_text(notes_text)
-print(f"Total chunks: {len(chunks)}")
 
 # ------------------------------
 # Create embeddings and FAISS index
@@ -70,7 +70,6 @@ chunk_embeddings = np.array(chunk_embeddings).astype("float32")
 dimension = chunk_embeddings.shape[1]
 index = faiss.IndexFlatL2(dimension)
 index.add(chunk_embeddings)
-print("FAISS index created with", index.ntotal, "chunks")
 
 # ------------------------------
 # Function to get top relevant chunks
@@ -93,7 +92,6 @@ class Query(BaseModel):
 @app.post("/ask")
 def ask_ai(query: Query):
     relevant_chunks = get_relevant_chunks(query.question, top_k=6)
-    print("Relevant chunks:", relevant_chunks)
     context = "\n".join(relevant_chunks) if relevant_chunks else ""
 
     if context:
