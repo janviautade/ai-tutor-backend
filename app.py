@@ -1,4 +1,5 @@
 # app.py
+# app.py
 from fastapi import FastAPI
 from pydantic import BaseModel
 import numpy as np
@@ -28,13 +29,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# ------------------------------
-# Test route to verify backend is running
-# ------------------------------
-@app.get("/")
-def home():
-    return {"status": "Backend running successfully ✅"}
 
 # ------------------------------
 # Load all notes from sample_notes folder
@@ -99,20 +93,30 @@ class Query(BaseModel):
 @app.post("/ask")
 def ask_ai(query: Query):
     relevant_chunks = get_relevant_chunks(query.question, top_k=6)
-    context = "\n".join(relevant_chunks) if relevant_chunks else ""
 
-    if context:
-        try:
-            response = client.models.generate_content(
-                model="gemini-2.5-flash",
-                contents=f"Answer the question in 4–5 sentences using the following notes:\n{context}\n\nQuestion: {query.question}"
-            )
-            answer = response.text or "Sorry, I don't have enough information to answer that question."
-        except Exception as e:
-            print("Gemini API error:", e)
-            answer = "Sorry, I don't have enough information to answer that question."
-    else:
+    # Only keep meaningful chunks (more than 1 word)
+    meaningful_chunks = [c for c in relevant_chunks if c.strip() and len(c.split()) > 1]
+
+    if not meaningful_chunks:
+        # Gibberish / no info → immediate fallback
+        return {"answer": "Sorry, I don't have enough information to answer that question.", "sources": []}
+
+    context = "\n".join(meaningful_chunks)
+
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=f"Answer the question in 4–5 sentences using the following notes:\n{context}\n\nQuestion: {query.question}"
+        )
+        answer = response.text or "Sorry, I don't have enough information to answer that question."
+    except Exception:
         answer = "Sorry, I don't have enough information to answer that question."
 
-    # Return only the answer (no sources)
     return {"answer": answer}
+
+# ------------------------------
+# Simple health check endpoint
+# ------------------------------
+@app.get("/")
+def home():
+    return {"status": "Backend running successfully ✅"}
