@@ -30,6 +30,13 @@ app.add_middleware(
 )
 
 # ------------------------------
+# Test route to verify backend is running
+# ------------------------------
+@app.get("/")
+def home():
+    return {"status": "Backend running successfully ✅"}
+
+# ------------------------------
 # Load all notes from sample_notes folder
 # ------------------------------
 def read_all_texts(folder_path):
@@ -74,10 +81,10 @@ index.add(chunk_embeddings)
 # ------------------------------
 # Function to get top relevant chunks
 # ------------------------------
-def get_relevant_chunks(question, top_k=6):  # increased to 6 chunks
+def get_relevant_chunks(question, top_k=6):
     q_embedding = model.encode([question]).astype("float32")
     distances, indices = index.search(q_embedding, top_k)
-    results = [chunks[i] for i in indices[0]]  # take top_k chunks without distance filtering
+    results = [chunks[i] for i in indices[0]]
     return results
 
 # ------------------------------
@@ -95,12 +102,17 @@ def ask_ai(query: Query):
     context = "\n".join(relevant_chunks) if relevant_chunks else ""
 
     if context:
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=f"Answer the question in 4–5 sentences using the following notes:\n{context}\n\nQuestion: {query.question}"
-        )
-        answer = response.text
+        try:
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=f"Answer the question in 4–5 sentences using the following notes:\n{context}\n\nQuestion: {query.question}"
+            )
+            answer = response.text or "Sorry, I don't have enough information to answer that question."
+        except Exception as e:
+            print("Gemini API error:", e)
+            answer = "Sorry, I don't have enough information to answer that question."
     else:
-        answer = "Sorry, I don't have info on that topic yet."
+        answer = "Sorry, I don't have enough information to answer that question."
 
-    return {"answer": answer, "sources": relevant_chunks}
+    # Return only the answer (no sources)
+    return {"answer": answer}
