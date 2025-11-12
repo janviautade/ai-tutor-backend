@@ -6,3 +6,4 @@ numpy
 sentence-transformers
 faiss-cpu
 sqlalchemy
+scikit-learn
