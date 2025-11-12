@@ -476,34 +476,57 @@ def submit_feedback(feedback: FeedbackRequest):
 def get_feedback_analytics():
     session = Session()
 
-    # Get feedback stats by lesson/source
+    # Get feedback stats by lesson/source - count each feedback once per message
     feedback_data = session.query(
         Feedback.helpful,
-        ChatMessage.sources
+        ChatMessage.sources,
+        Feedback.id  # Include feedback ID to avoid duplicates
     ).join(ChatMessage, Feedback.message_id == ChatMessage.id).all()
 
     session.close()
 
-    # Process feedback data
+    # Process feedback data - each feedback counts once, but distributed across sources
     lesson_feedback = {}
     total_feedback = {"helpful": 0, "not_helpful": 0, "total": 0}
+    processed_feedbacks = set()  # Track processed feedback IDs
 
-    for helpful, sources_str in feedback_data:
+    for helpful, sources_str, feedback_id in feedback_data:
+        if feedback_id in processed_feedbacks:
+            continue  # Skip if already processed this feedback
+
+        processed_feedbacks.add(feedback_id)
         sources = json.loads(sources_str) if sources_str else []
 
-        for source in sources:
-            if source not in lesson_feedback:
-                lesson_feedback[source] = {"helpful": 0, "not_helpful": 0, "total": 0}
+        # Count this feedback once in total
+        if helpful == 1:
+            total_feedback["helpful"] += 1
+        else:
+            total_feedback["not_helpful"] += 1
+        total_feedback["total"] += 1
+
+        # Distribute across sources (if message has multiple sources, each gets credit)
+        if sources:
+            for source in sources:
+                if source not in lesson_feedback:
+                    lesson_feedback[source] = {"helpful": 0, "not_helpful": 0, "total": 0}
+
+                if helpful == 1:
+                    lesson_feedback[source]["helpful"] += 1
+                else:
+                    lesson_feedback[source]["not_helpful"] += 1
+
+                lesson_feedback[source]["total"] += 1
+        else:
+            # If no sources, put in "Unknown" category
+            if "Unknown" not in lesson_feedback:
+                lesson_feedback["Unknown"] = {"helpful": 0, "not_helpful": 0, "total": 0}
 
             if helpful == 1:
-                lesson_feedback[source]["helpful"] += 1
-                total_feedback["helpful"] += 1
+                lesson_feedback["Unknown"]["helpful"] += 1
             else:
-                lesson_feedback[source]["not_helpful"] += 1
-                total_feedback["not_helpful"] += 1
+                lesson_feedback["Unknown"]["not_helpful"] += 1
 
-            lesson_feedback[source]["total"] += 1
-            total_feedback["total"] += 1
+            lesson_feedback["Unknown"]["total"] += 1
 
     return {
         "lesson_feedback": lesson_feedback,
