@@ -7,6 +7,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from google import genai
 import os
 from dotenv import load_dotenv
+from sqlalchemy import create_engine, Column, Integer, String, Text
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 load_dotenv()
 
@@ -29,7 +32,41 @@ app.add_middleware(
 )
 
 # ------------------------------
-# Load all notes from sample_notes folder
+# Database setup
+# ------------------------------
+Base = declarative_base()
+
+class Lesson(Base):
+    __tablename__ = 'lessons'
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    content = Column(Text)
+
+engine = create_engine('sqlite:///lessons.db')
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)
+
+# Populate DB if empty
+session = Session()
+if session.query(Lesson).count() == 0:
+    texts = read_all_texts("sample_notes")
+    for text in texts:
+        lesson = Lesson(title=text['lesson'], content=text['text'])
+        session.add(lesson)
+    session.commit()
+session.close()
+
+# ------------------------------
+# Load all notes from database
+# ------------------------------
+def load_lessons_from_db():
+    session = Session()
+    lessons = session.query(Lesson).all()
+    session.close()
+    return [{'lesson': l.title, 'text': l.content} for l in lessons]
+
+# ------------------------------
+# Load all notes from sample_notes folder (for initial population)
 # ------------------------------
 def read_all_texts(folder_path):
     texts = []
@@ -42,7 +79,7 @@ def read_all_texts(folder_path):
                 lesson_counter += 1
     return texts
 
-lessons = read_all_texts("sample_notes")
+lessons = load_lessons_from_db()
 
 # ------------------------------
 # Split text into chunks and track lesson sources

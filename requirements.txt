@@ -5,3 +5,4 @@ google-genai
 numpy
 sentence-transformers
 faiss-cpu
+sqlalchemy
