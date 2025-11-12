@@ -96,6 +96,20 @@ engine = create_engine('sqlite:///lessons.db')
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
+# ------------------------------
+# Load all notes from sample_notes folder (for initial population)
+# ------------------------------
+def read_all_texts(folder_path):
+    texts = []
+    lesson_counter = 1
+    for file_name in os.listdir(folder_path):
+        if file_name.endswith(".txt"):
+            with open(os.path.join(folder_path, file_name), "r", encoding="utf-8") as f:
+                text = f.read()
+                texts.append({"lesson": f"Lesson {lesson_counter}", "text": text})
+                lesson_counter += 1
+    return texts
+
 # Populate DB if empty
 session = Session()
 if session.query(Lesson).count() == 0:
@@ -114,20 +128,6 @@ def load_lessons_from_db():
     lessons = session.query(Lesson).all()
     session.close()
     return [{'lesson': l.title, 'text': l.content} for l in lessons]
-
-# ------------------------------
-# Load all notes from sample_notes folder (for initial population)
-# ------------------------------
-def read_all_texts(folder_path):
-    texts = []
-    lesson_counter = 1
-    for file_name in os.listdir(folder_path):
-        if file_name.endswith(".txt"):
-            with open(os.path.join(folder_path, file_name), "r", encoding="utf-8") as f:
-                text = f.read()
-                texts.append({"lesson": f"Lesson {lesson_counter}", "text": text})
-                lesson_counter += 1
-    return texts
 
 lessons = load_lessons_from_db()
 
